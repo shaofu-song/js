@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>水平轮播</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			.slider{
+				width: 700px;
+				height: 400px;
+				position: relative;
+				overflow: hidden;
+			}
+			.slider .list .item img{
+				width: 700px;
+				height: 400px;
+				display: block;
+			}
+			.slider .list{
+				position: absolute;
+			}
+			.slider .list .item{
+				width: 700px;
+				height: 400px;
+				float: left;
+			}
+			.slider .prev, .slider .next{
+				position: absolute;
+				top: 210px;
+			}
+			.slider .next{
+				right: 0px;
+			}
+			.slider .pagination{
+				position: relative;
+				top: 300px;
+			}
+			.slider .pagination .bullet{
+				width: 20px;
+				height: 20px;
+				background-color: black;
+				margin-left: 5px;
+				float: left;
+				border: 2px solid yellow;
+				cursor: pointer;
+				color: white;
+				line-height: 20px;
+				text-align: center;
+			}
+			.focus{
+				background-color: hotpink !important;//优先级
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slider">
+			<ul class="list">
+				<li class="item"><img src="./img/a0.jpg"></li>
+				<li class="item"><img src="./img/a1.jpg"></li>
+				<li class="item"><img src="./img/a2.jpg"></li>
+				<li class="item"><img src="./img/a3.jpg"></li>
+			</ul>
+			<button class="prev">prev</button>
+			<button class="next">next</button>
+			<ul class="pagination">
+				<li class="bullet focus">1</li>
+				<li class="bullet">2</li>
+				<li class="bullet">3</li>
+				<li class="bullet">4</li>
+			</ul>
+		</div>
+		<script src="./js/animation.js"></script>
+		<script>
+			(function (){
+				var  currIndex;
+				var lis;
+				var liWidth;
+				var len;
+				var id;
+				
+				init();
+				
+				function init(){
+					currIndex = 1;
+					var li_1 = document.querySelector('.slider .list .item:first-of-type');
+					var copy_1 = li_1.cloneNode(true);//子元素也克隆
+					var li_last = document.querySelector('.slider .list .item:last-of-type');
+					var copy_last = li_last.cloneNode(true);
+					
+					var list = document.querySelector('.slider .list');
+					list.appendChild(copy_1);
+					list.insertBefore(copy_last,li_1);
+					
+					lis = document.querySelectorAll('.list .item');
+					liWidth = lis[0].offsetWidth;
+					len = lis.length;
+					
+					list.style.width = liWidth * len + 'px';
+					list.style.left = -liWidth + 'px';//默认索引
+					
+					
+					document.querySelector('.prev').onclick = function(){
+						slidePrev();
+					}
+					
+					document.querySelector('.next').onclick = function(){
+						slideNext();
+					}
+					
+					var bullets = document.querySelectorAll('.slider .pagination .bullet');
+					for (var i = 0; i < bullets.length; i++){
+						bullets[i].index = i;
+						bullets[i].onclick = function (){
+							currIndex = this.index + 1;
+							slideTo(currIndex);
+						}
+					}
+				}
+				
+				var slider = document.querySelector('.slider');
+				slider.onmouseover = function(){
+					stop();
+				}
+				
+				slider.onmouseout = function(){
+					auto();
+				}
+				//自动轮播
+				auto();
+				
+				function slidePrev(){
+					currIndex--;
+					slideTo(currIndex);
+				}
+				
+				function slideNext(){
+					currIndex++;
+					slideTo(currIndex);
+				}
+				
+				function slideTo(index){
+					var list = document.querySelector('.slider .list');
+					
+					if (index === len){
+						currIndex = index = 2;
+						list.style.left = -liWidth + 'px';
+					}
+					
+					if (index === -1){
+						currIndex = index = len - 3;
+						list.style.left = -(len - 2) * liWidth + 'px';
+					}
+					
+					var focusIndex;
+					var bullets = document.querySelectorAll('.pagination .bullet');
+					if (index === 0){
+						focusIndex = bullets.length - 1;
+					}else if(index === len - 1){
+						focusIndex = 0;
+					}else{
+						focusIndex = index - 1;
+					}
+					
+					document.querySelector('.focus').className = 'bullet';
+					bullets[focusIndex].className = 'bullet focus';
+					
+					var left = -index * liWidth;
+					animate(list,{
+						left:left
+					})
+				}
+				
+				function auto(){
+					clearInterval(id);
+					id = setInterval(function(){
+						slideNext();
+					},1500);
+				}
+				
+				function stop(){
+					clearInterval(id);
+				}
+			})()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>三国杀</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: #000;
+			}
+			.container{
+				width: 150px;
+				height: 150px;
+				margin: 100px auto;
+				perspective: 800px;
+			}
+			.contant{
+				transform-style: preserve-3d;
+				width: 150px;
+				margin-left: -75px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transition: all .5s;
+			}
+			.contant img{
+				width: 150px;
+				height: 200px;
+				position: absolute;
+				transition: all .5s;
+				border-radius: 10px;
+				box-shadow: 0 0 5px #f99;
+			}
+			.contant img.active{
+				box-shadow: 0 0 15px #f99;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 布局结构：舞台、容器、图片 -->
+		<div class="container">
+			<ul class="contant" id="contant">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+				<img src="img/5.jpg" alt="">
+				<img src="img/6.jpg" alt="">
+				<img src="img/7.jpg" alt="">
+				<img src="img/8.jpg" alt="">
+				<img src="img/9.jpg" alt="">
+			</ul>
+		</div>
+		<script>
+			window.onload = function(){
+				//获取元素
+				var oContant = document.getElementById("contant");
+				var aImage = oContant.children;
+				
+				//给每一个image设置一个值rotateY值;
+				for(var i = 0;i < aImage.length; i++){
+					aImage[i].style.transform = "rotateY("+ i * 40 + "deg) translateZ(226px) rotateY(0deg)";
+				}
+				
+				var index = 0;//无限递增
+				changeImg(index);
+				document.onclick = function(){
+					index ++;
+					changeImg(index);
+				}
+				
+				function changeImg(index){//封装功能,根据index切换图片
+					oContant.style.transform = "rotateY("+ -index * 40 +"deg)";
+						//判断前一张图片和后一张图片;
+						var now = index % 9;//当前显示图片
+						var beforeImage = now - 1;//前一张图片
+						var afterImage = now + 1;//后一张图片
+						
+						//注意开头和结尾的判断
+						if(now == 8){
+							afterImage = 0;
+						}
+						if(now == 0){
+							beforeImage = 8;
+						}
+						
+						//让前后图片平行于第一张图片
+						aImage[afterImage].style.transform = "rotateY("+afterImage*40+"deg) translateZ(226px) rotateY(-45deg)";
+						aImage[beforeImage].style.transform = "rotateY("+beforeImage*40+"deg) translateZ(226px) rotateY(45deg)";
+						aImage[now].style.transform = "rotateY("+now*40+"deg) translateZ(226px) rotateY(0)";
+				
+						//加类之前清空类
+						for(var i = 0; i < aImage.length; i++){
+							aImage[i].className = "active";
+						}
+						aImage[now].className = "active";
+				}
+			}
+		</script>
+	</body>
+</html>

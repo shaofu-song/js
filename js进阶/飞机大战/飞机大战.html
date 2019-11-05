@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>飞机坦克</title>
+		<link rel="stylesheet" type="text/css" href="./飞机大战.css"/>
+		
+	</head>
+	<body>
+		<div id="mainScreen">
+			<div id="bg1" class="bg"></div>
+			<div id="bg2" class="bg"></div>
+			
+			<div id="airplane"></div>
+			
+			<!-- <span id="start">start</span>
+			<span id="over">Game over</span>
+			<span id="grade">score:</span> -->
+			<div id="start">start</div>
+			<div id="over">Game over</div>
+			<div id="grade">score: 0</div>
+		</div>
+		<!-- <audio autoplay="autoplay" loop="loop"></audio> -->
+		<audio id="vd" loop="loop" autoplay="autoplay">
+			<source src="./mp3/飞机大战bgm.mp3" type="audio/mp3" />
+		</audio>
+	</body>
+	<!-- <script>
+		window.onload = setInterval(function(){
+			var music = document.getElementById("vd");//获取ID  
+			if (music.paused) { //判读是否播放  
+				music.paused=false;
+				music.play(); //没有就播放
+			};	 
+		},10)
+	</script> -->
+	<script src="./飞机大战.js"></script>
+</html>

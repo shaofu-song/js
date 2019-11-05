@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: cornflowerblue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>显示</button>
+		<button>隐藏</button>
+		<button>停止动画</button>
+		<div></div>
+		
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script>
+			$('button:first').click(function(){
+				//$('div').show(3000);
+				//$('div').fadeIn(3000);
+				//$('div').slideDown(2000);
+				/*$('div').animate({
+					width: 500,
+					height: 600
+				},2000);*/
+				$('div').animate({
+					width: 500,
+				},2000).animate({
+					height: 600
+				},2000);
+			})
+			
+			$('button:eq(1)').click(function(){
+				//$('div').hide(2000);
+				//$('div').fadeOut(2000);
+				//$('div').slideUp(1000);
+				/*$('div').animate({
+					width: 200,
+					height: 200
+				},2000);*/
+				
+				$('div').animate({
+					height: 200,
+				},2000).animate({
+					width: 200
+				},2000);
+			})
+			
+			$('button:last').click(function(){
+				//$('div').stop(); //停止当前的动画
+				$('div').stop(true);
+			})
+		</script>
+	</body>
+</html>

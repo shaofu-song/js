@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				overflow: hidden;//消除滚动条
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: black;
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+			
+			div:nth-of-type(2){
+				left: 500px;
+				top: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<script>
+			var speedX = 5;
+			var speedY = 3;
+			
+			var div1 = document.querySelector('div');
+			var div2 = document.querySelector('div:nth-of-type(2)');
+			div1.speedX = 5;
+			div1.speedY = 3;
+			div2.speedX = 5;
+			div2.speedY = 3;
+			
+			
+			function move(el){
+				var currentLeft = parseInt(window.getComputedStyle(el).left);
+				var currentTop = parseInt(window.getComputedStyle(el).top);
+				
+				check_border_collision(el);
+				
+				//碰撞之后反向
+				var tempX,tempY;
+				if(check_block_collision(div1,div2)){
+					tempX = div1.speedX;
+					tempY = div1.speedY;
+					
+					div1.speedX = div2.speedX;
+					div1.speedY = div2.speedY;
+					
+					div2.speedX = tempX;
+					div2.speedY = tempY;
+				}
+				
+				var left = currentLeft + el.speedX;
+				var top = currentTop + el.speedY;
+				el.style.left = left + "px";
+				el.style.top = top + "px";
+			}
+			
+			//边缘检测
+			function check_border_collision(el){
+				var style = window.getComputedStyle(el);
+				var left = parseInt(style.left);
+				var top = parseInt(style.top);
+				var w = parseInt(style.width);
+				var h = parseInt(style.height);
+				
+				if (left < 0 ){
+					left = 0 ;
+					el.speedX *= -1;
+				}
+				
+				if (left > window.innerWidth - w){
+					left = window.innerWidth - w;
+					el.speedX *= -1;
+				}
+				
+				if (top < 0 ){
+					top = 0 ;
+					el.speedY *= -1;
+				}
+				
+				if (top > window.innerHeight - h){
+					top = window.innerHeight - h;
+					el.speedY *= -1;
+				}
+				
+				el.style.top = top + 'px';
+				el.style.left = left + 'px';
+			}
+			
+			//块与块检测
+			function check_block_collision(block1,block2){
+				var left1 = parseInt(window.getComputedStyle(block1).left);
+				var left2 = parseInt(window.getComputedStyle(block2).left);
+				
+				var top1 = parseInt(window.getComputedStyle(block1).top);
+				var top2 = parseInt(window.getComputedStyle(block2).top);
+			
+				var width1 = parseInt(window.getComputedStyle(block1).width);
+				var width2 = parseInt(window.getComputedStyle(block2).width);
+				
+				var height1 = parseInt(window.getComputedStyle(block1).height);
+				var height2 = parseInt(window.getComputedStyle(block2).height);
+				
+				var center1 = {
+					x:left1 + width1 / 2, //注意是逗号
+					y:top1 + height1 / 2
+				}
+				
+				var center2 = {
+					x:left2 + width2 / 2,
+					y:top2 + height2 / 2
+				}
+				
+				var diffX = Math.abs(center1.x - center2.x);
+				var diffY = Math.abs(center1.y - center2.y);
+				
+				if (diffX < (width1+width2) / 2 && diffY < (height1 + height2) / 2){
+					return true;
+				}
+				
+				return false;
+			}
+				
+			setInterval(function(){
+				move(div1);
+				move(div2);
+			},20);
+		</script>
+	</body>
+</html>

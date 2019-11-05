@@ -1,0 +1,109 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+ #container{
+	 width: 1000px;
+	 height: 650px;
+	 border: 1px solid orange;
+	 margin: 30px auto;
+	 position: relative;
+ }
+ #box{
+	 width: 600px;
+	 height: 500px;
+	 border: 1px solid red;
+	 box-shadow: 2px 2px 5px hotpink;
+	 position: relative;
+	 left: 50px;
+	 top: 30px;
+	 
+ }
+ #box ul{
+	 /*ul 600px 0px*/
+	list-style: none;
+ }
+ #box li{
+	 width: 60px;
+	 height: 30px;
+	 position: absolute;
+	 background-color: #AAAAAA;
+	 
+	 margin: 0;
+	 border: 1px solid white;
+	 box-sizing: border-box;
+	 
+	 
+ }
+ #board{
+	 width: 120px;
+	 height: 10px;
+	 border-radius: 5px;
+	 position: absolute;
+	 left: 150px;
+	 bottom: 0px;
+	 background-color: #FFA500;
+ }
+ #bubble{
+	 width: 14px;
+	 height: 14px;
+	 border-radius: 7px 7px;
+	 position: absolute;
+	 left: 180px;
+	 bottom: 10px;
+	 background-color: #FF0000;
+ }
+ #start{
+	 width: 100px;
+	 height: 30px;
+	 position: absolute;
+	 left: 270px;
+	 bottom: 40px;
+	 background-color: #FF69B4;
+	 /*color: #FFFFFF;*/
+	 text-align: center;
+	 line-height: 30px;
+ }
+ #show{
+	 width: 250px;
+	 height: 500px;
+	 /*border: 1px solid red;*/
+	 position: absolute;
+	 top: 30px;
+	 right: 50px;
+	 background-color: darkgreen;
+	 
+ }
+ #show span{
+	 width: 240px;
+	 height: 50px;
+	 /*border-bottom: 1px dotted red;*/
+	 display: block;
+	 margin-left: 4px;
+	 line-height: 50px;
+	 color: #FFFF00;
+	 font-size: 20px;
+	 
+ }
+ #show #info{
+	 height: 80px;
+	 border-bottom: 1px solid red;
+	 font-size: 30px;
+	 line-height: 80px;
+ }
+ #show #time{
+	 border-bottom: 1px dotted red;
+	 color: bisque;
+ }
+ #show #res{
+	 border-bottom: 1px dotted red;
+	 color: bisque;
+ }
+ #show #times{
+	 border-bottom: 1px dotted red;
+	 color: bisque;
+ }
+ #show #score{
+	 border-bottom: 1px dotted red;
+	 color: bisque;
+ }

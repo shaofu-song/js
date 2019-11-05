@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>数字图片时钟</title>
+		<style>
+			img{
+				width: 80px;
+				height: 160px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			时
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			分
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			秒
+		</div>
+		<script>
+			setInterval(function(){
+				var now = new Date();
+				var h = now.getHours();
+				var m = now.getMinutes();
+				var s = now.getSeconds();
+				
+				var _date = [
+					h < 10 ? 0 : Math.floor(h / 10), h % 10,
+					m < 10 ? 0 : Math.floor(m / 10), m % 10,
+					s < 10 ? 0 : Math.floor(s / 10), s % 10
+				];
+				//console.log(_date);
+				var imgs = document.getElementsByTagName("img");
+				for(var i = 0; i < imgs.length; i++){
+					imgs[i].src = "img/" + _date[i] + ".jpg";
+				}
+			},1000)
+		</script>
+	</body>
+</html>

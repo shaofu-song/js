@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>瀑布流</title>
+		<link rel="stylesheet" type="text/css" href="瀑布流.css"/>
+	</head>
+	<body>
+		<div id="box">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+		<script src="ajax.js"></script>
+		<script>
+			window.onload = function(){
+				//获取页面元素
+				var oBox = document.getElementById("box");
+				var oUl = document.getElementsByTagName("ul");
+				var vH = document.documentElement.clientHeight;
+				//最小高度
+				function min_height(oUl){
+					var ht = oUl[0].offsetHeight;
+					var index = 0;
+					for(var i = 0; i < oUl.length; i++ ){
+						if (oUl[i].offsetHeight < ht){
+							ht = oUl[i].offsetHeight;
+							index = i;
+						}
+					}
+					return index;
+				}
+				loadImg();
+				//加载图片
+				function loadImg(){
+					ajax("瀑布流.json",function(data){
+						data = (new Function("return" + data))();
+						//alert(data);
+						for(var i = 0;i < data.length; i++){
+							var oLi = document.createElement("li");
+							var oImg = document.createElement("img");
+							oImg.src = data[i];
+							oLi.appendChild(oImg);
+							oUl[min_height(oUl)].appendChild(oLi);
+						}
+					})
+				}
+				//滚动事件
+				document.onscroll = function(){
+					var sH = document.documentElement.scrollTop || document.body.scrollTop;
+					if(sH + vH >= document.body.scrollHeight * 0.8){
+						loadImg();
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

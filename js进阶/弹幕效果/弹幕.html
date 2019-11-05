@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>弹幕效果</title>
+		<link rel="stylesheet" type="text/css" href="./弹幕.css" />
+	</head>
+	<body>
+		<div id="box">
+			<div id="content"></div>
+			<p id="btm">
+				<span><input type="text" id="text"/></span>
+				<span id="sendCon">发送</span>
+				<span id="hideCon">隐藏</span>
+				<span id="showCon">显示</span>
+			</p>
+		</div>
+		<div id="v">
+			
+		</div>
+	</body>
+</html>
+<script>
+	function $(id){
+		return document.getElementById(id);
+	}
+	//发送消息
+	function sendMessage(){
+		var oSpan = document.createElement("span");
+		oSpan.innerHTML = $("text").value;
+		$("content").appendChild(oSpan);
+		oSpan.className = "oSpanmove";
+		oSpan.style.top = Math.floor(Math.random() * 440) + "px";
+		var oSpanWidth = oSpan.offsetWidth;
+		oSpan.style.left = oSpanWidth + 700 + "px";
+		var timerId = null;
+		timerId = setInterval(function(){
+			oSpan.style.left = oSpan.offsetLeft - 10 + "px";
+			if (oSpan.offsetLeft < -oSpanWidth){
+				clearInterval(timerId);
+				oSpan.remove();
+			}
+		},80);
+		
+		$("text").value = "";
+	}
+	
+	//鼠标发送
+	$("sendCon").addEventListener("mousedown",function(){
+		sendMessage();
+	})
+	
+	//键盘发送
+	document.onkeydown = function (e){
+		var e = e || event;
+		 if (e.keyCode == 13){
+			 sendMessage();
+		 }
+	}
+		
+	//隐藏:将运动的消息隐藏,背景图片亮度增强了
+	$("hideCon").onclick = function (){
+		$("content").style.opacity = "0.3";
+		$("content").style.filter = 'alpha(opacity=0.3)';
+	}
+	
+	//显示:弹幕继续向前运动,背景图片变模糊
+	$("showCon").onclick = function (){
+		$("content").style.opacity = "1";
+		$("content").style.filter = 'alpha(opacity=1)';
+	}
+</script>

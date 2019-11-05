@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>百度搜索列表</title>
+	</head>
+	<body>
+		<input type="text" />
+		<ul></ul>
+		<script src="./js/jquery-3.4.1.min.js"></script>
+		<script>
+			function getData(data){
+				var script = document.querySelector('#jsonp');
+				script.parentNode.removeChild(script);
+				$('ul').html('');
+				for (var i = 0; i < data.s.length; i++){
+					$('<li>' + data.s[i] + '</li>').appendTo('ul');
+				}
+			}
+			
+			function getList(wd){
+				var script = document.createElement('script');
+				script.id = 'jsonp';
+				script.src = 'https://www.baidu.com/su?cb=getData&wd=' + wd;
+				document.body.appendChild(script);
+			}
+			
+			$('input').keyup(function(){
+				var wd = $(this).val();
+				getList(wd);
+			})
+		</script>
+	</body>
+</html>

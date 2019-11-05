@@ -1,0 +1,67 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+#box{
+	width: 700px;
+	height: 500px;
+	border: 2px solid orange;
+	margin: 0 auto;
+	
+}
+#content{
+	width: 700px;
+	height: 460px;
+	background-image: url(./img/5.jpg);
+	background-size: 700px 460px;
+	/* opacity: 0.4; */
+	position: relative;
+	overflow-x: hidden;
+}
+#btm{
+	width: 700px;
+	height: 40px;
+	background-color: orange;
+}
+#text{
+	width: 349px;
+	height: 40px;
+	box-sizing: border-box;
+	font-size: 20px;
+	/*padding: 0;*/
+}
+#showCon{
+	width: 110px;
+	height: 40px;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	display: inline-block;
+	font-size: 15px;
+}
+#sendCon{
+	width: 110px;
+	height: 40px;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	display: inline-block;
+	font-size: 15px;
+}
+#hideCon{
+	width: 110px;
+	height: 40px;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	display: inline-block;
+	font-size: 15px;
+}
+.oSpanmove{
+	display: block;
+	position: absolute;
+	color: yellow;
+	height: 60px;
+	font-size: 25px
+}
+

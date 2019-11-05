@@ -1,0 +1,102 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+/*背景*/
+#mainScreen{
+	width: 512px;
+	height: 684px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.bg{
+	width: 512px;
+	height: 684px;
+	position: absolute;
+	background-image: url(./img/bg.jpg);
+}
+
+#bg2{
+	top: -684px;
+}
+
+/*飞机*/
+#airplane{
+	width: 100px;
+	height: 78px;
+	background-image: url(./img/hero1.jpg);
+	position: absolute;
+	left: 206px;
+	top: 600px;
+}
+
+/*子弹*/
+.bullent{
+	position: absolute;
+	width: 15px;
+	height: 24px;
+	background-image: url(./img/bullet.jpg);
+	background-size: 15px 24px;
+}
+
+/*坦克*/
+.tank{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background-image: url(./img/enemy1.jpg);
+	background-size: 40px 40px;
+}
+
+/*开始*/
+#start{
+	width: 130px;
+	height: 70px;
+	position: absolute;
+	top: 250px;
+	left: 190px;
+	color: red;
+	text-align: center;
+	line-height: 70px;
+	font-size: 50px;
+	font-weight: bold;
+	/* z-index: 2; */
+	/* opacity: 0; */
+}
+
+/*分数*/
+#grade{
+	width: 100px;
+	height: 20px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	color: yellow;
+	text-align: center;
+	line-height: 20px;
+	font-size: 20px;
+	font-weight: bold;	
+	/* opacity: 0; */
+}
+
+/*游戏结束*/
+#over{
+	width: 100%;
+	height: 70px;
+	position: absolute;
+	top: 250px;
+	/* left: 130px; */
+	color: red;
+	text-align: center;
+	line-height: 70px;
+	font-size: 40px;
+	font-weight: bold;
+	/* z-index: 1; */
+	/* opacity: 0; */
+	display: none;
+}
+#over p{
+	color: yellow;
+}

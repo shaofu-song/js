@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				overflow: hidden;//消除滚动条
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: black;
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script>
+			var speedX = 5;
+			var speedY = 3;
+			
+			var div = document.querySelector('div');
+			
+			function move(){
+				var currentLeft = parseInt(window.getComputedStyle(div).left);
+				var currentTop = parseInt(window.getComputedStyle(div).top);
+				
+				check_border_collision(div);
+				var left = currentLeft + speedX;
+				var top = currentTop + speedY;
+				div.style.left = left + "px";
+				div.style.top = top + "px";
+			}
+			
+			//边缘检测
+			function check_border_collision(el){
+				var style = window.getComputedStyle(el);
+				var left = parseInt(style.left);
+				var top = parseInt(style.top);
+				var w = parseInt(style.width);
+				var h = parseInt(style.height);
+				
+				if (left < 0 ){
+					left = 0 ;
+					speedX *= -1;
+				}
+				
+				if (left > window.innerWidth - w){
+					left = window.innerWidth - w;
+					speedX *= -1;
+				}
+				
+				if (top < 0 ){
+					top = 0 ;
+					speedY *= -1;
+				}
+				
+				if (top > window.innerHeight - h){
+					top = window.innerHeight - h;
+					speedY *= -1;
+				}
+				
+				el.style.top = top + 'px';
+				el.style.left = left + 'px';
+			}
+			
+			setInterval(function(){
+				move();
+			},20);
+		</script>
+	</body>
+</html>

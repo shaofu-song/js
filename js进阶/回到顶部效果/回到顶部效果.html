@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<title>回到顶部效果</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background: url(img/1.png) no-repeat center top;
+				height: 8000px;
+				background-size: 1920px 100%;
+			}
+			a{
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="javascript:;">回到顶部</a>
+	</body>
+	<script>
+		window.onload = function(){
+			var oA = document.getElementsByTagName('a')[0];
+			var timer = null;//定时器的接收值
+			var speed = 0;
+			var flag = true;
+			window.onscroll  = function(){
+				//1.按钮的显示与隐藏
+				var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;//获取scrolltop的值
+				if(scrolltop >= 600){
+					oA.style.display = "block";
+				}else{
+					oA.style.display = "none";
+				}
+				//通过鼠标滚轮自由控制滚动条(停止定时器)
+				if(!flag){
+					clearInterval(timer);
+				}
+				flag = false;//频率:定时器规定的时间内可以二次或多次触发scrolltop事件,flag值会保存下来传给上面的if语句
+			};
+				
+			//点击回到顶部的按钮
+			oA.onclick = function(){
+				timer = setInterval(function(){
+					var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;//获取scrolltop值
+					speed = scrolltop / 5;//speed从大到小的值
+					document.documentElement.scrollTop = document.body.scrollTop = scrolltop - speed;//设置scrolltop值缓冲的运动的状态
+					//如果scrolltop的值为0时关闭定时器
+					if(scrolltop == 0){
+						clearInterval(timer);
+					}
+					flag = true;
+				},50);
+			};
+		}
+	</script>
+</html>
