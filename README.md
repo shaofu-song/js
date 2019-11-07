@@ -14,6 +14,10 @@
     * 封装了动画函数，块与块之间的碰撞，匀速和边缘碰撞。
   * 实现技术：
     * 元素的left、right、innerHeight、innerWidth。
+  * 链接;
+    * [animate动画](http://47.104.149.241:88/js/js-animation/animate.html)
+    * [块与块碰撞](http://47.104.149.241:88/js/js-animation/block-block-pengzhuang.html)
+    * [块与边缘碰撞](http://47.104.149.241:88/js/js-animation/block-edge-pengzhuang.html)
 #### 轮播效果：
   * 项目介绍：
     * 实现水平轮播和透明度轮播和图片地址变换轮播
