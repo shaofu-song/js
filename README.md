@@ -28,7 +28,7 @@
   * 链接：
     * [透明度轮播](http://47.104.149.241:88/js/js-animation/toumingdulunbo.html)
     * [水平轮播](http://47.104.149.241:88/js/js-animation/shuipinglunbo.html)
-    * [img地址轮播](http://47.104.149.241:88/js/js-levelup/lunbo/lunbo.html)
+    * [img地址轮播](http://47.104.149.241:88/js/js-levelup/lunbo/lunbo.html)     加载图片有延迟
 ### 三.js进阶:
 #### 弹幕效果：
   * 项目介绍：
